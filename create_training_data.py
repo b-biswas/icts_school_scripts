@@ -93,8 +93,7 @@ for i in range(N_samples):
     params_arr = scale_unit_random(unit_random_arr[i], priors) 
     params     = get_params_dict_from_unit_random(unit_random_arr[i], priors)
     data_vector = cocoa_model.calculate_data_vector(params, None)
-    dv_file = np.array([np.arange(len(data_vector)), data_vector]).T
-    dv_list.append(dv_file)
+    dv_list.append(data_vector)
     params_list.append(params_arr)
     if(i%5==0):
         # TRAINING_DV_DATA_OUTPUT: The output file where to store the data vector list for training
