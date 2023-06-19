@@ -17,7 +17,7 @@ The [cocoa scripts](https://github.com/b-biswas/icts_school_scripts/tree/main/co
 **Step 2**\
 Preprocess the data: 
 We first remove the dv with very large chi^2 compared to the fiducial (these would most likely correspond to the unphysical models) 
-Then we normalize the remaining data points (for eg. between 0 and 1) so that they can be fed to train a Neural Network.
+Then we normalize the remaining data points (for eg. between 0 and 1 as shown in the [preprocessing notebook](https://github.com/b-biswas/icts_school_scripts/blob/main/notebooks/process_training_data.ipynb)) so that they can be fed to train a Neural Network.
 The normalized data is saved in the [data folder](https://github.com/b-biswas/icts_school_scripts/tree/main/data) as final_x.npy and final_y.npy
 
 **Step 3**\
