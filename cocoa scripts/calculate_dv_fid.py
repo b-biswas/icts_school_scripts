@@ -2,7 +2,7 @@ import sys
 import numpy as np
 import time 
 import h5py as h5
-import torch
+#import torch
 
 from cobaya.yaml import yaml_load_file
 from cobaya.input import update_info
@@ -43,7 +43,7 @@ configfile = sys.argv[1]
 cocoa_model = CocoaModel(configfile, 'des_y3.des_cosmic_shear')
 
 params_fid = {'As_1e9': 2.04, 'ns': 0.97, 'H0': 70., 'omegab': 0.0495, 'omegam': 0.3,
-              'w': -1., 'w0pwa': -1.,
+              'w': -1., 'w0pwa': -1., 'mnu': 0.06,
              'DES_A1_1': 0.5, 'DES_A1_2': 0.,
              'DES_A2_1': 0., 'DES_A2_2': 0., 'DES_BTA_1': 0.0 # Restrict to the NLA model
              }
@@ -63,5 +63,3 @@ end_time    = time.time()
 print("Time taken for data vector calculation: %2.2f s "%(end_time - start_time))
 
 dv_file = np.array([np.arange(len(data_vector)), data_vector]).T
-
-

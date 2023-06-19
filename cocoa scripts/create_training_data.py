@@ -2,12 +2,19 @@ import sys
 import numpy as np
 import time 
 import h5py as h5
-import torch
+#import torch
 
 from cobaya.yaml import yaml_load_file
 from cobaya.input import update_info
 from cobaya.model import Model
 from cobaya.conventions import kinds, _timing, _params, _prior, _packages_path
+
+file_num = sys.argv[2]
+
+print(file_num)
+
+TRAINING_DV_DATA_OUTPUT = "/sps/lsst/users/bbiswas/ICTS-School/data/dv_output_"
+TRAINING_PARAMS_DATA_OUTPUT = "/sps/lsst/users/bbiswas/ICTS-School/data/training_params_"
 
 def get_model(yaml_file):
     info  = yaml_load_file(yaml_file)
@@ -71,7 +78,7 @@ def get_params_dict_from_unit_random(unit_random, priors):
     """
     pars = scale_unit_random(unit_random, priors)
     params_fid = {'As_1e9': pars[0], 'ns': pars[1], 'H0': pars[2], 'omegab': pars[3], 'omegam': pars[4],
-                    'w0pwa': -1., 'w': -1., 
+                    'w0pwa': -1., 'w': -1., 'mnu': 0.06,
                     'DES_A1_1': pars[5], 'DES_A1_2': pars[6],
                     'DES_A2_1': 0., 'DES_A2_2': 0., 'DES_BTA_1': 0.0 # Restrict to the NLA model
              }
@@ -81,7 +88,7 @@ def get_params_dict_from_unit_random(unit_random, priors):
 
     return params_fid
 
-N_samples = 10
+N_samples = 5000
 N_dims    = 7
 
 unit_random_arr = np.random.uniform(size=(N_samples, N_dims))
@@ -90,6 +97,7 @@ params_list = []
 dv_list     = []
 
 for i in range(N_samples):
+    print(i)
     params_arr = scale_unit_random(unit_random_arr[i], priors) 
     params     = get_params_dict_from_unit_random(unit_random_arr[i], priors)
     data_vector = cocoa_model.calculate_data_vector(params, None)
@@ -98,6 +106,6 @@ for i in range(N_samples):
     if(i%5==0):
         # TRAINING_DV_DATA_OUTPUT: The output file where to store the data vector list for training
         # TRAINING_PARAMS_DATA_OUTPUT: The output file where to store the parameter list for training 
-        np.save(TRAINING_DV_DATA_OUTPUT, np.array(dv_list))
-        np.save(TRAINING_PARAMS_DATA_OUTPUT, np.array(params_list))
+        np.save(TRAINING_DV_DATA_OUTPUT + str(file_num) , np.array(dv_list))
+        np.save(TRAINING_PARAMS_DATA_OUTPUT + str(file_num), np.array(params_list))
 
