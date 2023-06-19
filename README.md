@@ -3,7 +3,7 @@
 This repository summarizes the work done by group [P5](https://www.icts.res.in/sites/default/files/seminar%20doc%20files/Project%205.pdf)  at ICTS BigDataCosmo School:
 
 ### Members:
-Animesh Sah, Anoma Ganguly, Biswajit Biswas, Purba Mukherjee, Sankarshana Srinivasan & Souvik Jana\
+Animesh Sah, Anoma Ganguly, Biswajit Biswas, Purba Mukherjee, Sankarshana Srinivasan & Souvik Jana
 ### Mentors:
 Elisabeth Krause & Supranta S. Boruah
 
